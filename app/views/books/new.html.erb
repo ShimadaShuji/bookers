@@ -1,16 +1,11 @@
 <h1>新規投稿</h1>
+<%= flash[:alert] %>
 
 <% if @book.errors.any? %>
   <%= @book.errors.count %>件のエラーが発生しました
   <% @book.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
-<% end %>
-
-<% if flash[:notice] %>
-     <p id="notice">
-       <%= flash[:notice] %>
-     </p>
 <% end %>
 
 <% if @book.errors.any? %>
