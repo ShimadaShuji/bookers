@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      flash[:alert]="メッセージが登録されました"
+      flash[:alert]="successfully"
       redirect_to book_path(@book.id)
     else
       @books = Book.all
@@ -18,26 +18,31 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
-    flash[:alert]="メッセージが登録されました"
+    @book = Book.find(params[:id])
+
+    if @book.update(book_params)
+    flash[:alert]="successfully"
+    redirect_to book_path(@book.id)
+    else
+      @books = Book.all
+      render 'edit'
+    end
   end
 
 
   def edit
     @book = Book.find(params[:id])
-    flash[:alert]="メッセージが登録されました"
+
   end
 
   def new
     @book =Book.new
-    flash[:alert]="メッセージが登録されました"
+
   end
 
   def show
     @book = Book.find(params[:id])
-    flash[:alert]="メッセージが登録されました"
+
   end
 
  def destroy
